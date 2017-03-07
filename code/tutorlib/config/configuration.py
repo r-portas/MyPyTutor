@@ -100,6 +100,9 @@ def load_config():
         } for section, options in cfg_dict.items()
     }
 
+    # Overwrite the store credentials
+    cfg_dict['online']['store_credentials'] = '0'
+
     return Namespace(**cfg_dict)
 
 
