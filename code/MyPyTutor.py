@@ -3,7 +3,7 @@ from __future__ import print_function
 import sys
 from argparse import ArgumentParser
 
-ALLOWED_VERSIONS = [(3,6)]  #[(3, 5), (3, 4)]
+ALLOWED_VERSIONS = [(3, 6)]  # [(3, 5), (3, 4)]
 
 if sys.version_info.major == 3:
     from getpass import getpass
@@ -16,7 +16,7 @@ if sys.version_info.major == 3:
 
 DEFAULT_CONFIG = {
     'online': {
-        'store_credentials': True,
+        'store_credentials': False,
         'username': '',
     },
     'tutorials': {
@@ -726,11 +726,14 @@ def main():
     update_default_tutorial_package(force_update=args.force_update_tutorials)
 
     # try to log the user in automatically
+    """
     username, password = try_get_credentials()
     if username is not None:
         web_api = try_login(username, password)
     else:
         web_api = None
+    """
+    web_api = None
 
     if web_api is not None:
         synchronise_problems(web_api)
